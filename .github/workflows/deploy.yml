@@ -19,11 +19,9 @@ jobs:
       # 3. Autenticazione alla Org usando il Secret salvato
       - name: 'Authenticate to Salesforce'
         run: |
-          echo "$SF_AUTH_URL_SECRET" > auth_url.txt
+          echo "${{ secrets.SF_AUTH_URL }}" > auth_url.txt
           sf org login sfdx-url --sfdx-url-file auth_url.txt --set-default --alias prod
           rm auth_url.txt
-        env:
-          SF_AUTH_URL_SECRET: ${{ secrets.SF_AUTH_URL }}
 
       # 4. Deploy del codice con esecuzione dei Test (Obbligatorio per i Trigger)
       - name: 'Deploy and Run Tests'
