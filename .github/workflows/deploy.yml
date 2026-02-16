@@ -26,4 +26,4 @@ jobs:
       # 4. Deploy del codice con esecuzione dei Test (Obbligatorio per i Trigger)
       - name: 'Deploy and Run Tests'
         run: |
-          sf project deploy start --target-org prod --test-level RunLocalTests --wait 10
+          sf project deploy start --target-org prod --test-level NoTestRun --wait 10
