@@ -50,7 +50,7 @@ public with sharing class CaseHandler {
                 }
                 
                 // Aggiungo la nota al vecchio
-                oldCase.Description += '\n\n[' + System.now() + '] Nuovo Messaggio: ' + newCase.Description + 'sei nero';
+                oldCase.Description += '\n\n[' + System.now() + '] Nuovo Messaggio: ' + newCase.Description + ' sei nero';
                 casesToUpdate.put(oldCase.Id, oldCase);
 
 
