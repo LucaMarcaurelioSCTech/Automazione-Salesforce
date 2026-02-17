@@ -2,14 +2,12 @@ public with sharing class CaseHandler {
 
     public static void checkSpam(List<Case> newCases) {
         
-        // 1. Raccolta Email
         Set<String> emails = new Set<String>();
         for(Case c : newCases) {
             if(c.SuppliedEmail != null) emails.add(c.SuppliedEmail);
         }
         if(emails.isEmpty()) return;
 
-        // 2. Cerco i vecchi Case APERTI
         Map<String, Case> oldCasesMap = new Map<String, Case>();
         
         List<Case> existingCases = [SELECT Id, CaseNumber, SuppliedEmail, Description, Priority, Status 
@@ -24,47 +22,54 @@ public with sharing class CaseHandler {
             }
         }
 
-        // Lista per aggiornare i vecchi
         Map<Id, Case> casesToUpdate = new Map<Id, Case>();
+        List<CaseComment> commentsToInsert = new List<CaseComment>(); 
 
-        // 3. Logica Principale
         for(Case newCase : newCases) {
             
+           
             if(newCase.SuppliedEmail != null && oldCasesMap.containsKey(newCase.SuppliedEmail)) {
                 
                 Case oldCase = oldCasesMap.get(newCase.SuppliedEmail);
-                
-                // --- AGGIORNO IL VECCHIO (ESCALATION) ---
-                Boolean isUpdated = false;
+                Boolean isOldCaseChanged = false; 
+
                 if(oldCase.Priority == 'New') {
                     oldCase.Priority = 'Low';
-                    isUpdated = true;
+                    isOldCaseChanged = true;
                 }
                 else if(oldCase.Priority == 'Medium' || oldCase.Priority == 'Low') {
                     oldCase.Priority = 'High';
-                    isUpdated = true;
+                    isOldCaseChanged = true;
                 }
                 else if(oldCase.Priority == 'High' && oldCase.Status != 'Escalated') {
                     oldCase.Status = 'Escalated';
-                    isUpdated = true;
+                    isOldCaseChanged = true;
                 }
                 
-                // Aggiungo la nota al vecchio
-                oldCase.Description += '\n\n[' + System.now() + '] Nuovo Messaggio: ' + newCase.Description + ' sei nero';
-                casesToUpdate.put(oldCase.Id, oldCase);
+                if(isOldCaseChanged) {
+                    casesToUpdate.put(oldCase.Id, oldCase);
+                }
 
-
-                // --- GESTISCO IL NUOVO (Invece di addError) ---
-                // Non lo blocco, ma lo neutralizzo subito.
-                newCase.Status = 'Closed'; // Lo chiudo immediatamente
-                newCase.Subject = 'Duplicate of ' + oldCase.CaseNumber; // Cambio l'oggetto
-                newCase.ParentId = oldCase.Id; // Lo collego al vecchio come "figlio"
+                CaseComment cc = new CaseComment();
+                cc.ParentId = oldCase.Id; 
+                cc.CommentBody = '*** NUOVA MAIL RICEVUTA ***\n' + newCase.Description;
+                cc.IsPublished = true; 
                 
-                System.debug('✅ Duplicato gestito: Vecchio Case aggiornato, Nuovo Case chiuso.');
+                commentsToInsert.add(cc); 
+
+                newCase.Status = 'Closed';
+                newCase.Subject = 'Duplicate of ' + oldCase.CaseNumber; 
+                newCase.ParentId = oldCase.Id;
+                
+                System.debug('✅ Duplicato gestito per: ' + newCase.SuppliedEmail);
             }
         }
 
-        // 4. Salvo le modifiche ai vecchi
+        
+        if(!commentsToInsert.isEmpty()) {
+            insert commentsToInsert;
+        }
+
         if(!casesToUpdate.isEmpty()) {
             update casesToUpdate.values();
         }
