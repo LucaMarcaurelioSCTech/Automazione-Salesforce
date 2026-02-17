@@ -64,14 +64,13 @@ public with sharing class CaseHandler {
                 System.debug('✅ Duplicato gestito per: ' + newCase.SuppliedEmail);
             }
         }
-
-        
+ 
         if(!commentsToInsert.isEmpty()) {
-            insert commentsToInsert;
+            Database.SaveResult[] results = Database.insert(commentsToInsert, false);
         }
 
         if(!casesToUpdate.isEmpty()) {
-            update casesToUpdate.values();
+            Database.update(casesToUpdate.values(),false);
         }
     }
 }
