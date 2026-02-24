@@ -14,9 +14,12 @@ export default class HelloWorld extends LightningElement {
     // Metodo collegato al NUOVO bottone: Cambia il saluto e poi svuota la casella
     aggiornaSaluto() {
         // 1. Controlla se abbiamo scritto qualcosa
-        if (this.testoInserito !== ''.trim()) {
+        if (this.testoInserito.trim() !== '') {
             // 2. Cambia il saluto ufficiale con il testo segreto
             this.saluto = this.testoInserito;
+        }
+        else {
+            console.log("Non puoi inserire solo spazi vuoti, per favore inserisci una stringa")
         }
         
         // 3. Svuota la variabile segreta (questo farà svuotare anche la casella su schermo!)
