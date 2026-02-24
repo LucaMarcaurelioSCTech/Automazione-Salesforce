@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Il mio primo LWC" icon-name="custom:custom14">
+        <div class="slds-m-around_medium">
+            
+            <p>Ciao, <strong>{saluto}!</strong></p>
+            <p>Hai cliccato il bottone: <strong>{conteggio}</strong> volte.</p>
+            
+            <br/>
+            
+            <lightning-input label="Cambia il saluto:" onchange={gestisciTesto}></lightning-input>
+            
+            <br/>
+            
+            <lightning-button label="Cliccami!" variant="brand" onclick={aggiungiClick}></lightning-button>
+            
+        </div>
+    </lightning-card>
+</template>
