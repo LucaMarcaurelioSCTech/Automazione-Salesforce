@@ -4,8 +4,6 @@ export default class HelloWorld extends LightningElement {
     
     saluto = 'Mondo';
     conteggio = 0;
-    
-    // Nuova variabile di appoggio che "ricorda" cosa stiamo scrivendo in segreto
     testoInserito = ''; 
 
     // Metodo che scatta mentre scrivi: salva il testo in segreto, ma NON cambia ancora il saluto
@@ -16,7 +14,7 @@ export default class HelloWorld extends LightningElement {
     // Metodo collegato al NUOVO bottone: Cambia il saluto e poi svuota la casella
     aggiornaSaluto() {
         // 1. Controlla se abbiamo scritto qualcosa
-        if (this.testoInserito !== '') {
+        if (this.testoInserito !== ''.strip()) {
             // 2. Cambia il saluto ufficiale con il testo segreto
             this.saluto = this.testoInserito;
         }
