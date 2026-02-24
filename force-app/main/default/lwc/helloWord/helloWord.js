@@ -19,7 +19,11 @@ export default class HelloWorld extends LightningElement {
             this.saluto = this.testoInserito;
         }
         else {
-            console.log("Non puoi inserire solo spazi vuoti, per favore inserisci una stringa");
+            this.dispatchEvent(new ShowToastEvent({
+                title: "Spazi Vuoti",
+                message: "Non puoi inserire solo spazi vuoti, per favore inserisci una stringa",
+                variant: "error"
+            }));
         }
         
         // 3. Svuota la variabile segreta (questo farà svuotare anche la casella su schermo!)
