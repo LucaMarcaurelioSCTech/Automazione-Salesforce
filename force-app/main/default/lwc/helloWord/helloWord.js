@@ -14,7 +14,7 @@ export default class HelloWorld extends LightningElement {
     // Metodo collegato al NUOVO bottone: Cambia il saluto e poi svuota la casella
     aggiornaSaluto() {
         // 1. Controlla se abbiamo scritto qualcosa
-        if (this.testoInserito !== ''.strip()) {
+        if (this.testoInserito !== ''.trim()) {
             // 2. Cambia il saluto ufficiale con il testo segreto
             this.saluto = this.testoInserito;
         }
