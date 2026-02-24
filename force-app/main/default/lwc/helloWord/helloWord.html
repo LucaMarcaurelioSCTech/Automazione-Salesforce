@@ -1,5 +1,5 @@
-<template>
-    <lightning-card title="Il mio primo LWC" icon-name="custom:custom14">
+<template> [1]
+    <lightning-card title="Il mio LWC con Reset" icon-name="custom:custom14">
         <div class="slds-m-around_medium">
             
             <p>Ciao, <strong>{saluto}!</strong></p>
@@ -7,11 +7,13 @@
             
             <br/>
             
-            <lightning-input label="Cambia il saluto:" onchange={gestisciTesto}></lightning-input>
+            <lightning-input label="Scrivi il nuovo saluto:" value={testoInserito} onchange={registraTesto}></lightning-input> [2]
             
             <br/>
             
-            <lightning-button label="Cliccami!" variant="brand" onclick={aggiungiClick}></lightning-button>
+            <lightning-button label="Aggiorna e Resetta" variant="success" onclick={aggiornaSaluto} class="slds-m-right_small"></lightning-button> [3]
+            
+            <lightning-button label="Aggiungi Click" variant="brand" onclick={aggiungiClick}></lightning-button> [4]
             
         </div>
     </lightning-card>
