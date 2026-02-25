@@ -2,8 +2,8 @@ public with sharing class OpportunityHandler {
     public static void gestoreFattura(List<Opportunity> newOpportunities) {
         Set<Id> accountIds = new Set<Id>();
 
-        for (Opportunity opp : newOpportunities) {
-            accountIds.add(opp.AccountId);
+        for (Opportunity curropp : newOpportunities) {
+            accountIds.add(curropp.AccountId);
         }
 
         List<Opportunity> oldopp = [SELECT Id , Amount , AccountId, NextStep
