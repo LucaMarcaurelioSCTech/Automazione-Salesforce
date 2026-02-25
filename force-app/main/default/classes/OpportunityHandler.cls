@@ -6,14 +6,14 @@ public with sharing class OpportunityHandler {
             accountIds.add(curropp.AccountId);
         }
 
-        List<Opportunity> oldopp = [SELECT Id , Amount , AccountId, NextStep
+        List<Opportunity> oppext = [SELECT Id , Amount , AccountId, NextStep
                                     FROM Opportunity
                                     WHERE AccountId IN :accountIds
                                     AND StageName = 'Prospecting'];
 
         Map<Id, Opportunity> accountEsistenti = new Map<Id, Opportunity>();
         Map<Id, Opportunity> oldOppsToUpdate = new Map<Id, Opportunity>();
-        for (Opportunity vecchiopp : oldopp) { 
+        for (Opportunity vecchiopp : oppext) { 
             accountEsistenti.put(vecchiopp.AccountId, vecchiopp); 
         }
 
