@@ -13,8 +13,8 @@ public with sharing class OpportunityHandler {
 
         Map<Id, Opportunity> accountEsistenti = new Map<Id, Opportunity>();
         Map<Id, Opportunity> oldOppsToUpdate = new Map<Id, Opportunity>();
-        for (Opportunity opp : oldopp) { 
-            accountEsistenti.put(opp.AccountId, opp); 
+        for (Opportunity vecchiopp : oldopp) { 
+            accountEsistenti.put(vecchiopp.AccountId, vecchiopp); 
         }
 
         for (Opportunity opp : newOpportunities) {
