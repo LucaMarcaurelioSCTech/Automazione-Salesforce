@@ -17,7 +17,7 @@ export default class HelloWorld extends LightningElement {
         // 1. Controlla se abbiamo scritto qualcosa
         if (this.testoInserito.trim() !== '') {
             // 2. Cambia il saluto ufficiale con il testo segreto
-            this.saluto = this.testoInserito;
+            this.saluto = this.testoInserito.trim();
         }
         else {
             this.dispatchEvent(new ShowToastEvent({
