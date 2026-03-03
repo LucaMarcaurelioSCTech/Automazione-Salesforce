@@ -6,7 +6,7 @@ export default class Subway_surf extends LightningElement {
 
     handleClick(){
         if (this.videoHidden) {
-            this.iframeClass = 'no-click hiddenVideo';
+            this.iframeClass = 'no-click videoHidden';
             this.videoHidden = false;
         }
         else {
