@@ -40,4 +40,5 @@ public with sharing class OpportunityHandler {
         Database.update(oldOppsToUpdate.values(),false);
 
     }
+    
 }
