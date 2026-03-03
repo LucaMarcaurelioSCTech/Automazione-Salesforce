@@ -1,9 +1,9 @@
-import { LightningElement } from 'lwc';
+import { LightningElement , api } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class HelloWorld extends LightningElement {
     
-    caseId;
+    @api caseId;
     saluto = 'Mondo';
     conteggio = 0;
     testoInserito = ''; 
