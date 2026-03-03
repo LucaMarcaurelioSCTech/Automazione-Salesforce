@@ -1,16 +1,17 @@
 <template>
     <div class="subway-surf">
-    <iframe 
-            width="320"
-            height="180"
-            src="https://www.youtube.com/embed/vTfD20dbxho?autoplay=1&mute=1&loop=1&playlist=vTfD20dbxho&controls=0&rel=0&playsinline=1"
-            title="YouTube video"
-            frameborder="0"
-            allow="autoplay; encrypted-media; picture-in-picture"
-    ></iframe>
+        <template lwc:if={isShowing}>
+            <iframe 
+                width="320" height="180" 
+                src="https://www.youtube.com/embed/vTfD20dbxho?autoplay=1&mute=1"
+                allow="autoplay">
+            </iframe>
+        </template>
+        
+        <template lwc:else>
+            <div class="placeholder">Video Spento</div>
+        </template>
 
-    <div class="button">
-        <button class="button"  onclick={handleClick}>ON/OFF</button>
-    </div>
+        <button onclick={toggleVideo}>ON/OFF</button>
     </div>
 </template>

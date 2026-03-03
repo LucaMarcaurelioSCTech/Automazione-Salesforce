@@ -2,3 +2,6 @@
     pointer-events: none;
     margin-left: 70px;
 }
+.video-hidden {
+    display: none;
+}
