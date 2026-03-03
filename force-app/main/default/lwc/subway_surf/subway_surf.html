@@ -1,17 +1,10 @@
 <template>
     <div class="subway-surf">
-        <template lwc:if={isShowing}>
             <iframe 
                 width="320" height="180" 
                 src="https://www.youtube.com/embed/vTfD20dbxho?autoplay=1&mute=1"
                 allow="autoplay">
             </iframe>
-        </template>
-        
-        <template lwc:else>
-            <div class="placeholder">Video Spento</div>
-        </template>
-
-        <button onclick={toggleVideo}>ON/OFF</button>
+        <div><button onclick={toggleVideo}>ON/OFF</button></div>
     </div>
 </template>
