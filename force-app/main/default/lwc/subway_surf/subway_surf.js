@@ -1,16 +1,18 @@
 import { LightningElement } from 'lwc';
 
-export default class Subway_surf extends LightningElement {
+export default class SsVideo extends LightningElement {
     videoHidden = false;
-    iframeClass='no-click';
+    iframeClass = 'no-click';
+    buttonLabel = 'OFF';
 
-    handleClick(){
+    toggleVideo() {
         if (this.videoHidden) {
-            this.iframeClass = 'no-click videoHidden';
+            this.iframeClass = 'hiddenVideo';
+            this.buttonLabel = 'ON';
             this.videoHidden = false;
-        }
-        else {
-            this.iframeClass = 'no-click';
+        } else {
+            this.iframeClass = '';
+            this.buttonLabel = 'OFF';
             this.videoHidden = true;
         }
     }

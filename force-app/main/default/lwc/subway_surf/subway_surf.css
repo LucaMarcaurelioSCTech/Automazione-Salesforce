@@ -1,7 +1,18 @@
-.subway-surf{
-    pointer-events: none;
+.yt-fixed {
+    width: 320px;
     margin-left: 70px;
 }
-.videoHidden {
-    display: none;
+
+.no-click {
+    pointer-events: none;
+}
+
+.hiddenVideo {
+    opacity: 0;
+}
+
+.btn-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
 }
