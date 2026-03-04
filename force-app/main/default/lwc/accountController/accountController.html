@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="Il mio LWC cerca account" icon-name="custom:custom14">
+        <div class="slds-m-around_medium">
+             
+            <p>Ciao</p>
+            
+            <br/>
+            
+            <lightning-input label="Scrivi gli account che vuoi far ritornare:" value={testoInserito} onchange={registraTesto}></lightning-input>
+            
+            <br/>
+            
+            <lightning-button label="Cerca e Resetta" variant="success" onclick={aggiornaRicerca} class="slds-m-right_small"></lightning-button>
+
+            <div class="slds-m-top_medium">
+                <template for:each={lista} for:item="c">
+                    <div key={c.Id} class="slds-box slds-m-bottom_small">
+                        <p><strong>Numero:</strong> {c.CaseNumber}</p>
+                        <p><strong>Email:</strong> {c.SuppliedEmail}</p>
+                        <p><strong>Priorità:</strong> {c.Priority}</p>
+                    </div>
+                </template>
+            </div>
+            
+        </div>
+    </lightning-card>
+</template>
