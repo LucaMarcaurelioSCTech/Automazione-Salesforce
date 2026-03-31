@@ -4,10 +4,10 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 export default class HelloWorld extends LightningElement {
     
     @api recordId;
+    @api recordStatus;
     saluto = 'Mondo';
     conteggio = 0;
     testoInserito = '';
-    recordstatus = recordId.Status; 
 
     // Metodo che scatta mentre scrivi: salva il testo in segreto, ma NON cambia ancora il saluto
     registraTesto(event) {
