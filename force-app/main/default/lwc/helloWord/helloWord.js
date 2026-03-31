@@ -3,7 +3,7 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class HelloWorld extends LightningElement {
     
-    @api recordId;
+    @api recordId = this.recordId.Status;
     saluto = 'Mondo';
     conteggio = 0;
     testoInserito = ''; 
